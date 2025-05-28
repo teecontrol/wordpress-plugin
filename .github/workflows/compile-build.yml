@@ -30,6 +30,14 @@ jobs:
           regex: '"version": "([0-9\.]*)",'
           replacement: '"version": "${{ github.event.release.name }}",'
 
+      - name: Update version number in readme
+        uses: mingjun97/file-regex-replace@v1
+        with:
+          include: 'readme\.txt'
+          flags: 'g'
+          regex: 'Stable tag: ([0-9\.]*)'
+          replacement: 'Stable tag: ${{ github.event.release.name }}'
+
       - name: Commit changes
         uses: stefanzweifel/git-auto-commit-action@v4
         with:

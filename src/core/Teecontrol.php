@@ -86,7 +86,7 @@ class Teecontrol
                 sprintf(__('Please <a href="%1$s">upgrade WordPress</a> to a current version.', 'teecontrol'), 'https://codex.wordpress.org/Upgrading_WordPress');
 
             static::bail_activation($message);
-        } elseif (! empty($_SERVER['SCRIPT_NAME']) && false !== strpos($_SERVER['SCRIPT_NAME'], '/wp-admin/plugins.php')) {
+        } elseif (! empty(wp_unslash($_SERVER['SCRIPT_NAME'])) && false !== strpos(wp_unslash($_SERVER['SCRIPT_NAME']), '/wp-admin/plugins.php')) {
             // Set temporary action so redirect in TeecontrolAdmin::admin_init will be triggered
             add_option('Activated_Teecontrol', true);
 

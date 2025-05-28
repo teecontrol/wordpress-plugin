@@ -19,7 +19,7 @@ foreach (['colorEnabled' => '--teecontrol-enabled-color', 'colorDisabled' => '--
     }
 }
 ?>
-<div <?php echo get_block_wrapper_attributes($elementAttributes); ?>>
+<div <?php echo wp_kses_data(get_block_wrapper_attributes($elementAttributes)); ?>>
     <?php foreach ($courseStatusAttributes as $attribute) { ?>
         <div class="teecontrol--course-status-attribute <?php echo esc_attr($attribute['is_enabled'] ? 'teecontrol--course-status-enabled' : 'teecontrol--course-status-disabled') ?>">
             <span class="teecontrol--course-status-attribute-label"><?php echo esc_html(isset($attribute['loop']) ? $attribute['loop']['name'] : $attribute['name']) ?></span>
@@ -29,9 +29,9 @@ foreach (['colorEnabled' => '--teecontrol-enabled-color', 'colorDisabled' => '--
     <?php if ($lastUpdateTime) { ?>
         <div class="teecontrol--course-status-timestamp"><?php printf(
             /* translators: %1$s will be replaced by date, %2$s will by replaced by time. */
-            __('Last update: %1$s %2$s', 'teecontrol'),
-            wp_date(get_option('date_format'), $lastUpdateTime->getTimestamp()),
-            wp_date(get_option('time_format'), $lastUpdateTime->getTimestamp())
+            esc_html(__('Last update: %1$s %2$s', 'teecontrol')),
+            esc_html(wp_date(get_option('date_format'), $lastUpdateTime->getTimestamp())),
+            esc_html(wp_date(get_option('time_format'), $lastUpdateTime->getTimestamp()))
         ) ?></div>
     <?php } ?>
 </div>

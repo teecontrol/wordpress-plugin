@@ -20,11 +20,11 @@ foreach (
 }
 
 ?>
-<div <?php echo get_block_wrapper_attributes($elementAttributes); ?>>
+<div <?php echo wp_kses_data(get_block_wrapper_attributes($elementAttributes)); ?>>
     <?php foreach ($eventsByDate as $eventsDate) { ?>
         <div class="teecontrol--course-agenda-event-date">
             <span class="teecontrol--course-agenda-date">
-                <?php echo wp_date(get_option('date_format'), strtotime($eventsDate['date'])) ?>
+                <?php echo esc_html(wp_date(get_option('date_format'), strtotime($eventsDate['date']))) ?>
             </span>
             <?php if (!empty($eventsDate['announcements'])) { ?>
                 <div class="teecontrol--course-agenda-announcements">
@@ -60,7 +60,7 @@ foreach (
                                         <div class="teecontrol--course-agenda-duration">
                                             <?php foreach (['start_time', 'end_time'] as $timestamp) { ?>
                                                 <span class="teecontrol--course-agenda-time">
-                                                    <?php echo wp_date(get_option('time_format'), strtotime($location[$timestamp]['timestamp'])) ?>
+                                                    <?php echo esc_html(wp_date(get_option('time_format'), strtotime($location[$timestamp]['timestamp']))) ?>
                                                 </span>
                                             <?php } ?>
                                         </div>

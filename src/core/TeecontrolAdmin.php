@@ -90,7 +90,7 @@ class TeecontrolAdmin
     {
         $additionalLinks = [];
 
-        $title = __('Settings');
+        $title = __('Settings', 'teecontrol');
         $style = '';
         if (!get_option('teecontrol_api_key')) {
             $style = 'font-weight: bold;';
@@ -106,7 +106,7 @@ class TeecontrolAdmin
 
     public static function settings_page()
     {
-        _e('Define your Teecontrol settings to enable the Teecontrol widgets.', 'teecontrol');
+        echo esc_html(__('Define your Teecontrol settings to enable the Teecontrol widgets.', 'teecontrol'));
     }
 
     public static function settings_input_field(string $setting, ?string $value = null)
@@ -131,7 +131,7 @@ class TeecontrolAdmin
             $value = get_option("teecontrol_{$key}");
         }
 
-        $checked = $value ? 'checked="checked"' : '';
+        $checked = (bool) $value;
 
         Teecontrol::view('settings/toggle', compact('key', 'checked'));
 
@@ -173,7 +173,9 @@ class TeecontrolAdmin
             // Get values from POST
             $values = [];
             foreach (['teecontrol_api_key', 'teecontrol_api_url'] as $setting) {
-                $values[$setting] = $_POST[$setting] ?? null;
+                $values[$setting] = isset($_POST[$setting])
+                    ? sanitize_text_field($_POST[$setting])
+                    : null;
             }
 
             // Encrypt API key
@@ -206,7 +208,7 @@ class TeecontrolAdmin
         }
 
         // Redirect to same page with status=1 to show our options updated banner
-        add_settings_error('teecontrol', 'settings_updated', __('Settings saved.'), 'success');
+        add_settings_error('teecontrol', 'settings_updated', __('Settings saved.', 'teecontrol'), 'success');
 
         // Redirect back to the settings page that was submitted.
         $goback = add_query_arg('settings-updated', 'true', wp_get_referer());

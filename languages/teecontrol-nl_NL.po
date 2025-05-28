@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Teecontrol Wordpress plugin 1.0.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/teecontrol\n"
 "POT-Creation-Date: 2025-05-21T12:27:47+00:00\n"
-"PO-Revision-Date: 2025-05-28 15:41+0200\n"
+"PO-Revision-Date: 2025-05-28 15:44+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: nl_NL\n"
@@ -93,7 +93,7 @@ msgstr "Dagmelding achtergrond"
 msgid "Announcement text"
 msgstr "Dagmelding tekst"
 
-#: build/blocks/course-agenda/index.js:107
+#: build/core/TeecontrolAdmin.php:93 build/blocks/course-agenda/index.js:107
 #: build/blocks/course-agenda/index.js:74
 msgid "Settings"
 msgstr "Instellingen"
@@ -201,3 +201,7 @@ msgstr "Alle informatie uit Teecontrol wordt ieder uur bijgewerkt. Met deze inst
 #: build/views/settings/form.php:8
 msgid "Save"
 msgstr "Opslaan"
+
+#: build/core/TeecontrolAdmin.php:209
+msgid "Settings saved."
+msgstr "Instellingen opgeslagen."

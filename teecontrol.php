@@ -4,12 +4,12 @@
  * @package Teecontrol
  */
 /*
-Plugin Name: Teecontrol Wordpress plugin
+Plugin Name: Teecontrol Course Data
 Plugin URI: https://teecontrol.com
 Description: Teecontrol is the ultimate Tee sheet software for golf courses.
 Version: 0.1.0
 Requires at least: 6.8
-Requires PHP: 8.3.13
+Requires PHP: 8.3
 License: GPL v3
 Author: Naboo Software B.V.
 Author URI: https://teecontrol.com

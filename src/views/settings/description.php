@@ -1,1 +1,1 @@
-<p class="description"><?php echo $text ?></p>
+<p class="description"><?php esc_html($text) ?></p>
