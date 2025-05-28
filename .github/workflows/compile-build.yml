@@ -26,6 +26,9 @@ jobs:
         run: npm run build
 
       - name: Zip plugin
+        run: npm run plugin-zip
+
+      - name: Upload zip
         uses: softprops/action-gh-release@v2
         with:
           files: 'teecontrol.zip'
