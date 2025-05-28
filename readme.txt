@@ -5,7 +5,7 @@ License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl.html
 Requires at least: 6.8
 Tested up to: 6.8
-Stable tag: 0.1.0
+Stable tag: 0.1.1
 Requires PHP: 8.3
 
 The first-party Teecontrol Wordpress plugin.
