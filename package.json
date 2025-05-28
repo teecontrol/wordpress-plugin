@@ -10,7 +10,9 @@
 	},
 	"files": [
 		"build",
+		"languages",
 		"vendor",
+		"composer.json",
 		"index.php",
 		"license.txt",
 		"readme.txt",
