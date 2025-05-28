@@ -5,7 +5,7 @@ License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl.html
 Requires at least: 6.8
 Tested up to: 6.8
-Stable tag: 0.1.0
+Stable tag: 1.0.0
 Requires PHP: 8.3
 
 The first-party Teecontrol Wordpress plugin.
@@ -29,7 +29,7 @@ In the block editor you may find the course status and course agenda blocks in d
 
 == Changelog ==
 
-= 0.1 =
+= 1.0 =
 
 Release date: 2025-05-28
 
