@@ -16,7 +16,7 @@ jobs:
 
       - name: Get next version
         id: get_next_version
-        uses: uses: wemogy/next-version-action@2.0.2
+        uses: wemogy/next-version-action@2.0.2
 
       - name: Show next version number
         run: |
