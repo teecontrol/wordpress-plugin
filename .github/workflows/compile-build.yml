@@ -20,7 +20,7 @@ jobs:
           include: 'teecontrol\.php'
           flags: 'g'
           regex: 'Version: ([0-9\.]*)'
-          replace: 'Version: ${{ github.event.release.name }}'
+          replacement: 'Version: ${{ github.event.release.name }}'
 
       - name: Update version number in package.json
         uses: mingjun97/file-regex-replace@v1
