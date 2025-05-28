@@ -37,14 +37,6 @@ class Teecontrol
         static::register_settings();
     }
 
-    public static function register_cron_intervals($schedules)
-    {
-        $schedules['every_second'] = array(
-            'interval' => 2,
-            'display'  => esc_html__('Every Second'), );
-        return $schedules;
-    }
-
     /**
      * Load translation of the textdomain
      *
