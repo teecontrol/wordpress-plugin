@@ -28,3 +28,9 @@ The course status and course agenda events will be synced every hour.
 In the block editor you may find the course status and course agenda blocks in de "Teecontrol" category.
 
 == Changelog ==
+
+= 0.1 =
+
+Release date: 2025-05-28
+
+The initial release of the Teecontrol Wordpress plugin
