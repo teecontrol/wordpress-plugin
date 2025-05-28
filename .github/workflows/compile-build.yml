@@ -14,12 +14,21 @@ jobs:
         with:
           ref: ${{ github.head_ref }}
 
-      - name: Update version number
-        uses: jacobtomlinson/gha-find-replace@v3
+      - name: Update version number in plugin
+        uses: mingjun97/file-regex-replace@v1
         with:
-          include: 'teecontrol.php'
-          find: '^(Version: [0-9]+\.[0-9]+\.[0-9]+)$'
+          include: 'teecontrol\.php'
+          flags: 'g'
+          regex: '^(Version: [0-9]+\.[0-9]+\.[0-9]+)$'
           replace: 'Version: ${{ github.event.release.tag_name }}'
+
+      - name: Update version number in package.json
+        uses: mingjun97/file-regex-replace@v1
+        with:
+          include: 'package\.json'
+          flags: 'g'
+          regex: '"version": "([0-9\.]*)",'
+          replacement: '"version": "${{ github.event.release.tag_name }}"'
 
       - name: Commit changes
         uses: stefanzweifel/git-auto-commit-action@v4
