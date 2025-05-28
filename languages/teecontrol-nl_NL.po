@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Teecontrol Wordpress plugin 1.0.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/teecontrol\n"
 "POT-Creation-Date: 2025-05-21T12:27:47+00:00\n"
-"PO-Revision-Date: 2025-05-27 17:26+0200\n"
+"PO-Revision-Date: 2025-05-28 15:41+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: nl_NL\n"
@@ -41,34 +41,34 @@ msgid "Last update: %1$s %2$s"
 msgstr "Laatste update: %1$s %2$s"
 
 #. translators: %1$s will be replaced by current Teecontrol version number, %2$s will be replaced by minimum required WordPress version number.
-#: build/core/Teecontrol.php:92
+#: build/core/Teecontrol.php:84
 #, php-format
 msgid "Teecontrol %1$s requires WordPress %2$s or higher."
 msgstr "Voor Teecontrol %1$s is Wordpress %2$s of hoger nodig."
 
 #. translators: %1$s will be replaced by wordPress documentation URL.
-#: build/core/Teecontrol.php:94
+#: build/core/Teecontrol.php:86
 #, php-format
 msgid "Please <a href=\"%1$s\">upgrade WordPress</a> to a current version."
 msgstr "<a href=\\\"%1$s\\\">Upgrade WordPress</a> naar een nieuwe versie."
 
 #. translators: %1$s will be replaced by "Teecontrol".
-#: build/core/Teecontrol.php:166
+#: build/core/Teecontrol.php:158
 #, php-format
 msgid "%1$s Data Blocks"
 msgstr "%1$s Data Blocks"
 
-#: build/core/Teecontrol.php:167 build/core/Teecontrol.php:284
+#: build/core/Teecontrol.php:159 build/core/Teecontrol.php:276
 #: build/core/TeecontrolAdmin.php:51 build/core/TeecontrolAdmin.php:52
 #: build/core/TeecontrolAdmin.php:59 build/views/settings/form.php:2
 msgid "Teecontrol"
 msgstr "Teecontrol"
 
-#: build/core/Teecontrol.php:327 build/core/TeecontrolAdmin.php:65
+#: build/core/Teecontrol.php:319 build/core/TeecontrolAdmin.php:65
 msgid "API Key"
 msgstr "API Key"
 
-#: build/core/Teecontrol.php:332 build/core/TeecontrolAdmin.php:73
+#: build/core/Teecontrol.php:324 build/core/TeecontrolAdmin.php:73
 msgid "API URL"
 msgstr "API URL"
 
@@ -197,3 +197,7 @@ msgstr "Baaninformatie bijwerken"
 #: build/core/TeecontrolAdmin.php:140
 msgid "All Teecontrol information is synced hourly. Using this option you can fetch the information manually."
 msgstr "Alle informatie uit Teecontrol wordt ieder uur bijgewerkt. Met deze instelling kunt u de informatie handmatig bijwerken."
+
+#: build/views/settings/form.php:8
+msgid "Save"
+msgstr "Opslaan"

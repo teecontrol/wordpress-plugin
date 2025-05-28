@@ -5,7 +5,7 @@
         <?php wp_nonce_field('teecontrol_settings_verify'); ?>
         <?php
             do_settings_sections('teecontrol');
-    submit_button(__('Save', 'general'));
+    submit_button(__('Save', 'teecontrol'));
     ?>
     </form>
 </div>
