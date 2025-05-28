@@ -1,9 +1,12 @@
 name: PHP Linting
 
-on: push
+on:
+  push:
+    paths:
+      - '**.php'
 
 jobs:
-  php-cs-fixer:
+  pint:
     runs-on: ubuntu-latest
 
     steps:
@@ -12,7 +15,7 @@ jobs:
         with:
           ref: ${{ github.head_ref }}
 
-      - name: "laravel-pint"
+      - name: Pint
         uses: aglipanci/laravel-pint-action@latest
         with:
           pintVersion: 1.22.1
