@@ -5,7 +5,7 @@ on:
     types: [released]
     
 jobs:
-  update_version:
+  prepare_next_version:
     runs-on: ubuntu-latest
 
     steps:
@@ -14,13 +14,17 @@ jobs:
         with:
           ref: ${{ github.head_ref }}
 
+      - name: Get next version
+        id: get_next_version
+        uses: thenativeweb/get-next-version@main
+
       - name: Update version number in plugin
         uses: mingjun97/file-regex-replace@v1
         with:
           include: 'teecontrol\.php'
           flags: 'g'
           regex: 'Version: ([0-9\.]*)'
-          replacement: 'Version: ${{ github.event.release.name }}'
+          replacement: 'Version: ${{ steps.get_next_version.outputs.version }}'
 
       - name: Update version number in package.json
         uses: mingjun97/file-regex-replace@v1
@@ -28,7 +32,7 @@ jobs:
           include: 'package\.json'
           flags: 'g'
           regex: '"version": "([0-9\.]*)",'
-          replacement: '"version": "${{ github.event.release.name }}",'
+          replacement: '"version": "${{ steps.get_next_version.outputs.version }}",'
 
       - name: Update version number in readme
         uses: mingjun97/file-regex-replace@v1
@@ -36,7 +40,7 @@ jobs:
           include: 'readme\.txt'
           flags: 'g'
           regex: 'Stable tag: ([0-9\.]*)'
-          replacement: 'Stable tag: ${{ github.event.release.name }}'
+          replacement: 'Stable tag: ${{ steps.get_next_version.outputs.version }}'
 
       - name: Commit changes
         uses: stefanzweifel/git-auto-commit-action@v4
@@ -46,7 +50,6 @@ jobs:
 
   build:
     runs-on: ubuntu-latest
-    needs: update_version
 
     steps:
       - name: Checkout code
