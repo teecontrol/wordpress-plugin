@@ -1,0 +1,43 @@
+:root {
+    --teecontrol-enabled-color: #65f23a;
+    --teecontrol-disabled-color: #ed3838;
+}
+
+.wp-block-teecontrol-course-status {
+    padding: 5px;
+}
+
+.teecontrol--course-status-attribute {
+    &.teecontrol--course-status-enabled .teecontrol--course-status-attribute-status::before {
+        background-color: var(--teecontrol-enabled-color);
+    }
+    &.teecontrol--course-status-disabled .teecontrol--course-status-attribute-status::before {
+        background-color: var(--teecontrol-disabled-color);
+    }
+}
+
+.teecontrol--course-status-attribute-label {
+    display: block;
+    float: left;
+    width: 40%;
+}
+
+.teecontrol--course-status-attribute-status {
+    display: flex;
+    align-items: center;
+    border-left: 1px solid var(--wp--preset--color--accent-6);
+    padding-left: 10px;
+}
+.teecontrol--course-status-attribute-status::before {
+    content: '';
+    height: 10px;
+    width: 10px;
+    border-radius: 10px;
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.teecontrol--course-status-timestamp {
+    color: var(--wp--preset--color--accent-4);
+    margin-top: 10px;
+}

@@ -1,0 +1,72 @@
+:root {
+    --teecontrol-announcement-background-color: #227aee;
+    --teecontrol-announcement-text-color: #ffffff;
+    --teecontrol-course-agenda-odd-items-background-color: transparent;
+    --teecontrol-course-agenda-even-items-background-color: #F6F6F6;
+}
+
+.wp-block-teecontrol-course-agenda {
+    padding: 5px;
+    margin-bottom: 10px;
+}
+
+.teecontrol--course-agenda-event-date {
+    padding: 10px 0 10px;
+    border-bottom: 1px solid var(--wp--preset--color--accent-6);
+    
+    &:first-child {
+        padding-top: 0;
+    }
+    &:last-child {
+        border-bottom: none;
+        padding-bottom: 0;
+    }
+}
+
+.teecontrol--course-agenda-announcements-item {
+    background-color: var(--teecontrol-announcement-background-color);
+    color: var(--teecontrol-announcement-text-color);
+
+    margin: 5px 0 5px;
+    padding: 10px;
+    border-radius: 10px;
+
+    &:last-child {
+        margin-bottom: 0;
+    }
+}
+
+.teecontrol--course-agenda-events {
+    margin-top: 10px;
+}
+
+.teecontrol--course-agenda-events-item {
+    padding: 10px;
+
+    &:nth-child(even) {
+        background-color: var(--teecontrol-course-agenda-even-items-background-color);
+    }
+    &:nth-child(odd) {
+        background-color: var(--teecontrol-course-agenda-odd-items-background-color);
+    }
+
+    &:last-child {
+        border-bottom: none;
+        margin-bottom: 0;
+    }
+}
+
+.teecontrol--course-agenda-locations {
+    padding-left: 10px;
+}
+
+.teecontrol--course-agenda-duration {
+    float: right;
+}
+
+.teecontrol--course-agenda-time::after {
+    content: '-';
+}
+.teecontrol--course-agenda-time:last-child::after {
+    content: none;
+}

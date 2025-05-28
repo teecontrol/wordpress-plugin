@@ -1,0 +1,33 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+	"version": "0.1.0",
+  "name": "teecontrol/course-status",
+  "title": "Course Status",
+  "description": "Adds a course status table in your template",
+  "category": "teecontrol",
+  "icon": "flag",
+  "keywords": [
+    "golf course",
+    "course status",
+    "tee sheet"
+  ],
+  "textdomain": "teecontrol",
+  "attributes": {
+    "className": {
+      "type": "string"
+    },
+    "colorEnabled": {
+      "type": "string"
+    },
+    "colorDisabled": {
+      "type": "string"
+    }
+  },
+  "example": {
+    "attributes": {}
+  },
+  "render": "file:./render.php",
+	"editorScript": "file:./index.js",
+	"style": "file:./style-index.css"
+}

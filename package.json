@@ -1,0 +1,22 @@
+{
+	"name": "teecontrol",
+	"version": "0.1.0",
+	"author": "Naboo Software B.V.",
+	"license": "GPL-3.0-or-later",
+	"scripts": {
+		"build": "wp-scripts build --webpack-copy-php --blocks-manifest",
+		"start": "wp-scripts start --webpack-copy-php --blocks-manifest",
+		"plugin-zip": "wp-scripts plugin-zip"
+	},
+	"files": [
+		"build",
+		"vendor",
+		"index.php",
+		"license.txt",
+		"readme.txt",
+		"teecontrol.php"
+	],
+	"devDependencies": {
+		"@wordpress/scripts": "^30.16.0"
+	}
+}

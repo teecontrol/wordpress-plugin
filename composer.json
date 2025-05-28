@@ -1,0 +1,18 @@
+{
+    "name": "u-lab/teecontrol",
+    "type": "wordpress-plugin",
+    "autoload": {
+        "psr-4": {
+            "Teecontrol\\": "build/core/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Jan-Joost Heurter",
+            "email": "janjoost.heurter@teecontrol.com"
+        }
+    ],
+    "require-dev": {
+        "laravel/pint": "^1.22"
+    }
+}

@@ -1,0 +1,199 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Teecontrol Wordpress plugin 1.0.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/teecontrol\n"
+"POT-Creation-Date: 2025-05-21T12:27:47+00:00\n"
+"PO-Revision-Date: 2025-05-27 17:26+0200\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: nl_NL\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.6\n"
+"X-Domain: teecontrol\n"
+
+#. Plugin Name of the plugin
+#: teecontrol.php
+msgid "Teecontrol Wordpress plugin"
+msgstr "Teecontrol Wordpress plugin"
+
+#. Plugin URI of the plugin
+#. Author URI of the plugin
+#: teecontrol.php
+msgid "https://teecontrol.com"
+msgstr "https://teecontrol.com"
+
+#. Description of the plugin
+#: teecontrol.php
+msgid "Teecontrol is the ultimate Tee sheet software for golf courses."
+msgstr "Teecontrol is het ultieme tee sheet systeem voor golfbanen."
+
+#. Author of the plugin
+#: teecontrol.php
+msgid "Naboo Software B.V."
+msgstr "Naboo Software B.V."
+
+#. translators: %1$s will be replaced by date, %2$s will by replaced by time.
+#: build/blocks/course-status/render.php:32
+#, php-format
+msgid "Last update: %1$s %2$s"
+msgstr "Laatste update: %1$s %2$s"
+
+#. translators: %1$s will be replaced by current Teecontrol version number, %2$s will be replaced by minimum required WordPress version number.
+#: build/core/Teecontrol.php:92
+#, php-format
+msgid "Teecontrol %1$s requires WordPress %2$s or higher."
+msgstr "Voor Teecontrol %1$s is Wordpress %2$s of hoger nodig."
+
+#. translators: %1$s will be replaced by wordPress documentation URL.
+#: build/core/Teecontrol.php:94
+#, php-format
+msgid "Please <a href=\"%1$s\">upgrade WordPress</a> to a current version."
+msgstr "<a href=\\\"%1$s\\\">Upgrade WordPress</a> naar een nieuwe versie."
+
+#. translators: %1$s will be replaced by "Teecontrol".
+#: build/core/Teecontrol.php:166
+#, php-format
+msgid "%1$s Data Blocks"
+msgstr "%1$s Data Blocks"
+
+#: build/core/Teecontrol.php:167 build/core/Teecontrol.php:284
+#: build/core/TeecontrolAdmin.php:51 build/core/TeecontrolAdmin.php:52
+#: build/core/TeecontrolAdmin.php:59 build/views/settings/form.php:2
+msgid "Teecontrol"
+msgstr "Teecontrol"
+
+#: build/core/Teecontrol.php:327 build/core/TeecontrolAdmin.php:65
+msgid "API Key"
+msgstr "API Key"
+
+#: build/core/Teecontrol.php:332 build/core/TeecontrolAdmin.php:73
+msgid "API URL"
+msgstr "API URL"
+
+#: build/core/TeecontrolAdmin.php:109
+msgid "Define your Teecontrol settings to enable the Teecontrol widgets."
+msgstr "Stel de Teecontrol gegevens in om de Teecontrol widgets beschikbaar te stellen."
+
+#: build/blocks/course-agenda/index.js:86
+#: build/blocks/course-status/index.js:65
+#: build/blocks/course-agenda/index.js:48
+#: build/blocks/course-status/index.js:31
+msgid "Color settings"
+msgstr "Kleur-instellingen"
+
+#: build/blocks/course-agenda/index.js:90
+#: build/blocks/course-agenda/index.js:53
+msgid "Announcement background"
+msgstr "Dagmelding achtergrond"
+
+#: build/blocks/course-agenda/index.js:94
+#: build/blocks/course-agenda/index.js:58
+msgid "Announcement text"
+msgstr "Dagmelding tekst"
+
+#: build/blocks/course-agenda/index.js:107
+#: build/blocks/course-agenda/index.js:74
+msgid "Settings"
+msgstr "Instellingen"
+
+#: build/blocks/course-agenda/index.js:109
+#: build/blocks/course-agenda/index.js:76
+msgid "Show loops or rounds"
+msgstr "Toon lussen of rondes"
+
+#: build/blocks/course-agenda/index.js:113
+#: build/blocks/course-agenda/index.js:81
+msgid "Loops"
+msgstr "Lussen"
+
+#: build/blocks/course-agenda/index.js:116
+#: build/blocks/course-agenda/index.js:83
+msgid "Rounds"
+msgstr "Rondes"
+
+#: build/blocks/course-agenda/index.js:183
+#: build/blocks/course-agenda/index.js:128
+msgid "Course Agenda"
+msgstr "Baanagenda"
+
+#: build/blocks/course-status/index.js:69
+#: build/blocks/course-status/index.js:36
+msgid "Enabled"
+msgstr "Ingeschakeld"
+
+#: build/blocks/course-status/index.js:73
+#: build/blocks/course-status/index.js:41
+msgid "Disabled"
+msgstr "Uitgeschakeld"
+
+#: build/blocks/course-status/index.js:138
+#: build/blocks/course-status/index.js:85
+msgid "Course Status"
+msgstr "Baanstatus"
+
+#: build/blocks/course-agenda/block.json
+msgctxt "block title"
+msgid "Course Agenda"
+msgstr "Baanagenda"
+
+#: build/blocks/course-agenda/block.json
+msgctxt "block description"
+msgid "Adds a course agenda table in your template of the upcoming 30 days"
+msgstr "Voegt een baanagenda toe aan uw template met evenementen van de komende 30 dagen"
+
+#: build/blocks/course-agenda/block.json build/blocks/course-status/block.json
+msgctxt "block keyword"
+msgid "golf course"
+msgstr "golfbaan"
+
+#: build/blocks/course-agenda/block.json
+msgctxt "block keyword"
+msgid "calendar"
+msgstr "kalender"
+
+#: build/blocks/course-agenda/block.json
+msgctxt "block keyword"
+msgid "course agenda"
+msgstr "baanagenda"
+
+#: build/blocks/course-agenda/block.json build/blocks/course-status/block.json
+msgctxt "block keyword"
+msgid "tee sheet"
+msgstr "teesheet"
+
+#: build/blocks/course-status/block.json
+msgctxt "block title"
+msgid "Course Status"
+msgstr "Baanstatus"
+
+#: build/blocks/course-status/block.json
+msgctxt "block description"
+msgid "Adds a course status table in your template"
+msgstr "Voegt een baanstatus tabel toe aan uw template"
+
+#: build/blocks/course-status/block.json
+msgctxt "block keyword"
+msgid "course status"
+msgstr "baanstatus"
+
+#. translators: %1$s is an index integer.
+#: build/blocks/course-agenda/index.js:99
+#: build/blocks/course-agenda/index.js:104
+#: build/blocks/course-agenda/index.js:64
+#: build/blocks/course-agenda/index.js:70
+msgid "Event color %1$s"
+msgstr "Evenement kleur %1$s"
+
+#: build/core/TeecontrolAdmin.php:123
+msgid "API keys can be managed in Teecontrol at \"Integrations\" > \"Player app\"."
+msgstr "API keys kunnen beheerd worden in Teecontrol onder \"Integraties\" > \"Spelers app\"."
+
+#: build/core/TeecontrolAdmin.php:81
+msgid "Update course information"
+msgstr "Baaninformatie bijwerken"
+
+#: build/core/TeecontrolAdmin.php:140
+msgid "All Teecontrol information is synced hourly. Using this option you can fetch the information manually."
+msgstr "Alle informatie uit Teecontrol wordt ieder uur bijgewerkt. Met deze instelling kunt u de informatie handmatig bijwerken."
