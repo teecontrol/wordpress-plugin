@@ -16,7 +16,12 @@ jobs:
 
       - name: Get next version
         id: get_next_version
-        uses: thenativeweb/get-next-version@main
+        uses: thenativeweb/get-next-version@v2
+
+      - name: Show next version number
+        run: |
+          echo ${{ steps.get_next_version.outputs.version }}
+          echo ${{ steps.get_next_version.outputs.hasNextVersion }}
 
       - name: Update version number in plugin
         uses: mingjun97/file-regex-replace@v1
@@ -28,6 +33,7 @@ jobs:
 
       - name: Update version number in package.json
         uses: mingjun97/file-regex-replace@v1
+        if: ${{ steps.get_next_version.outputs.hasNextVersion == 'true' }}
         with:
           include: 'package\.json'
           flags: 'g'
@@ -36,6 +42,7 @@ jobs:
 
       - name: Update version number in readme
         uses: mingjun97/file-regex-replace@v1
+        if: ${{ steps.get_next_version.outputs.hasNextVersion == 'true' }}
         with:
           include: 'readme\.txt'
           flags: 'g'
