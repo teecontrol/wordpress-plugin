@@ -28,10 +28,10 @@ foreach (['colorEnabled' => '--teecontrol-enabled-color', 'colorDisabled' => '--
     <?php } ?>
     <?php if ($lastUpdateTime) { ?>
         <div class="teecontrol--course-status-timestamp"><?php printf(
-                                                                /* translators: %1$s will be replaced by date, %2$s will by replaced by time. */
-                                                                __('Last update: %1$s %2$s', 'teecontrol'),
-                                                                wp_date(get_option('date_format'), $lastUpdateTime->getTimestamp()),
-                                                                wp_date(get_option('time_format'), $lastUpdateTime->getTimestamp())
-                                                            ) ?></div>
+            /* translators: %1$s will be replaced by date, %2$s will by replaced by time. */
+            __('Last update: %1$s %2$s', 'teecontrol'),
+            wp_date(get_option('date_format'), $lastUpdateTime->getTimestamp()),
+            wp_date(get_option('time_format'), $lastUpdateTime->getTimestamp())
+        ) ?></div>
     <?php } ?>
 </div>

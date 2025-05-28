@@ -127,7 +127,7 @@ class TeecontrolAdmin
 
     public static function settings_toggle_field(string $key, ?bool $value = null)
     {
-        if(is_null($value)) {
+        if (is_null($value)) {
             $value = get_option("teecontrol_{$key}");
         }
 

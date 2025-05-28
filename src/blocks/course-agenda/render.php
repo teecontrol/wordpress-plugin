@@ -45,13 +45,13 @@ foreach (
                             <div class="teecontrol--course-agenda-locations">
                                 <?php
                                 $locationTypes = ['facilities'];
-                                if ($attributes['showLoopsOrSets'] == 'loops' || empty($event['sets'])) {
-                                    $locationTypes[] = 'loops';
-                                } else {
-                                    $locationTypes[] = 'sets';
-                                }
-                                foreach($locationTypes as $locationType) {
-                                    foreach ($event[$locationType] as $location) {
+                        if ($attributes['showLoopsOrSets'] == 'loops' || empty($event['sets'])) {
+                            $locationTypes[] = 'loops';
+                        } else {
+                            $locationTypes[] = 'sets';
+                        }
+                        foreach ($locationTypes as $locationType) {
+                            foreach ($event[$locationType] as $location) {
                                 ?>
                                     <div class="teecontrol--course-agenda-location-item <?php echo esc_attr("teecontrol-course-agenda-location-{$locationType}") ?>">
                                         <span class="teecontrol--course-agenda-location-name">
@@ -66,9 +66,9 @@ foreach (
                                         </div>
                                     </div>
                                 <?php
-                                    }
-                                }
-                                ?>
+                            }
+                        }
+                        ?>
                             </div>
                         </div>
                     <?php } ?>
