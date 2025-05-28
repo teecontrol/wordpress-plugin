@@ -19,8 +19,8 @@ jobs:
         with:
           include: 'teecontrol\.php'
           flags: 'g'
-          regex: '^(Version: [0-9]+\.[0-9]+\.[0-9]+)$'
-          replace: 'Version: ${{ github.event.release.tag_name }}'
+          regex: 'Version: ([0-9\.]*)'
+          replace: 'Version: ${{ github.event.release.name }}'
 
       - name: Update version number in package.json
         uses: mingjun97/file-regex-replace@v1
@@ -28,7 +28,7 @@ jobs:
           include: 'package\.json'
           flags: 'g'
           regex: '"version": "([0-9\.]*)",'
-          replacement: '"version": "${{ github.event.release.tag_name }}"'
+          replacement: '"version": "${{ github.event.release.name }}",'
 
       - name: Commit changes
         uses: stefanzweifel/git-auto-commit-action@v4
