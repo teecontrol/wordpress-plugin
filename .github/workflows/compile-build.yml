@@ -34,6 +34,7 @@ jobs:
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
           commit_message: Update version number
+          branch: main
 
   build:
     runs-on: ubuntu-latest
