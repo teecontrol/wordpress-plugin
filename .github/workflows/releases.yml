@@ -1,91 +1,95 @@
-name: Compile release build
+name: Manual release
 
 on:
-  release:
-    types: [released]
-    
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version to release'
+        required: true
+
+permissions:
+  contents: write
+
 jobs:
-  prepare_next_version:
-    runs-on: ubuntu-latest
+  release:
+    runs-on: ubuntu-24.04
+
+    name: Release ${{ inputs.version }}
+
+    outputs:
+      version: ${{ steps.version.outputs.version }}
+      notes: ${{ steps.cleaned-notes.outputs.notes }}
 
     steps:
-      - name: Checkout code
+      - name: Checkout repository
         uses: actions/checkout@v4
-        with:
-          ref: ${{ github.head_ref }}
 
-      - name: Get next version
-        id: get_next_version
-        uses: wemogy/next-version-action@2.0.2
-
-      - name: Show next version number
+      - name: Remove optional "v" prefix
+        id: version
         run: |
-          echo ${{ steps.get_next_version.outputs.next-version }}
+          echo "version=${VERSION#v}" >> "$GITHUB_OUTPUT"
+        env:
+          VERSION: ${{ inputs.version }}
 
-      - name: Update version number in plugin
-        uses: mingjun97/file-regex-replace@v1
+      - name: Update teecontrol.php version
+        run: sed -i "s/Version: '.*'/Version: '${{ steps.version.outputs.version }}'/g" teecontrol.php
+
+      - name: Update package.json version
+        run: sed -i "s/\"version\": \".*\"/\"version\": \"${{ steps.version.outputs.version }}\"/g" package.json
+
+      - name: Update readme.md version
+        run: sed -i "s/Stable tag: '.*'/Stable tag: '${{ steps.version.outputs.version }}'/g" readme.txt
+
+      - name: Commit version change
+        uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          include: 'teecontrol\.php'
-          flags: 'g'
-          regex: 'Version: ([0-9\.]*)'
-          replacement: 'Version: ${{ steps.get_next_version.outputs.next-version }}'
+          commit_message: "Update version to v${{ steps.version.outputs.version }}"
 
-      - name: Update version number in package.json
-        uses: mingjun97/file-regex-replace@v1
+      - name: Generate release notes
+        id: generated-notes
+        uses: RedCrafter07/release-notes-action@main
         with:
-          include: 'package\.json'
-          flags: 'g'
-          regex: '"version": "([0-9\.]*)",'
-          replacement: '"version": "${{ steps.get_next_version.outputs.next-version }}",'
+          tag-name: v${{ steps.version.outputs.version }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.ref_name }}
 
-      - name: Update version number in readme
-        uses: mingjun97/file-regex-replace@v1
-        with:
-          include: 'readme\.txt'
-          flags: 'g'
-          regex: 'Stable tag: ([0-9\.]*)'
-          replacement: 'Stable tag: ${{ steps.get_next_version.outputs.next-version }}'
+      - name: Cleanup release notes
+        id: cleaned-notes
+        run: |
+          START_FROM=$(echo -n "$RELEASE_NOTES" | awk "/What's Changed/{ print NR; exit }" -)
+          DROP_FROM_CONTRIBUTORS=$(echo -n "$RELEASE_NOTES" | awk "/New Contributors/{ print NR; exit }" -)
+          DROP_FROM_FULL_CHANGELOG=$(echo -n "$RELEASE_NOTES" | awk "/Full Changelog/{ print NR; exit }" -)
 
-      - name: Commit changes
-        uses: stefanzweifel/git-auto-commit-action@v4
-        with:
-          commit_message: Update version number
-          branch: main
+          # Drop everything starting from "Full Changelog"
+          if [ ! -z "$DROP_FROM_FULL_CHANGELOG" ]; then
+              RELEASE_NOTES=$(echo -n "$RELEASE_NOTES" | sed "${DROP_FROM_FULL_CHANGELOG},$ d")
+          fi
 
-  build:
-    runs-on: ubuntu-latest
+          # Drop everything starting from "New Contributors"
+          if [ ! -z "$DROP_FROM_CONTRIBUTORS" ]; then
+              RELEASE_NOTES=$(echo -n "$RELEASE_NOTES" | sed "${DROP_FROM_CONTRIBUTORS},$ d")
+          fi
 
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-        with:
-          ref: ${{ github.head_ref }}
+          # Drop the line "What's Changed"
+          if [ ! -z "$START_FROM" ]; then
+              RELEASE_NOTES=$(echo -n "$RELEASE_NOTES" | sed "${START_FROM}d")
+          fi
 
-      - name: Setup PHP
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: '8.3'
+          {
+            echo 'notes<<EOF'
+            echo "$RELEASE_NOTES"
+            echo EOF
+          } >> "$GITHUB_OUTPUT";
+        env:
+          RELEASE_NOTES: ${{ steps.generated-notes.outputs.release-notes }}
 
-      - name: Setup composer
-        uses: ramsey/composer-install@v3
-        with:
-          composer-options: "--no-dev"
-
-      - name: Install node
-        uses: actions/setup-node@v4
-        with:
-          node-version-file: .node-version
-
-      - name: Install NPM dependencies
-        run: npm ci
-
-      - name: Compile build
-        run: npm run build
-
-      - name: Zip plugin
-        run: npm run plugin-zip
-
-      - name: Upload zip
+      - name: Create release
         uses: softprops/action-gh-release@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          files: 'teecontrol.zip'
+          tag_name: v${{ steps.version.outputs.version }}
+          name: v${{ steps.version.outputs.version }}
+          body: ${{ steps.cleaned-notes.outputs.notes }}
+          target_commitish: ${{ github.ref_name }}
+          make_latest: "${{ github.ref_name == github.event.repository.default_branch }}"
