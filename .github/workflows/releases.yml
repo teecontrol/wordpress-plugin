@@ -82,6 +82,30 @@ jobs:
           } >> "$GITHUB_OUTPUT";
         env:
           RELEASE_NOTES: ${{ steps.generated-notes.outputs.release-notes }}
+      
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+
+      - name: Setup composer
+        uses: ramsey/composer-install@v3
+        with:
+          composer-options: "--no-dev"
+
+      - name: Install node
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .node-version
+
+      - name: Install NPM dependencies
+        run: npm ci
+
+      - name: Compile build
+        run: npm run build
+
+      - name: Zip plugin
+        run: npm run plugin-zip
 
       - name: Create release
         uses: softprops/action-gh-release@v2
@@ -93,3 +117,4 @@ jobs:
           body: ${{ steps.cleaned-notes.outputs.notes }}
           target_commitish: ${{ github.ref_name }}
           make_latest: "${{ github.ref_name == github.event.repository.default_branch }}"
+          files: 'teecontrol.zip'
