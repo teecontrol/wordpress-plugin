@@ -28,14 +28,12 @@ jobs:
         env:
           VERSION: ${{ inputs.version }}
 
-      - name: Update teecontrol.php version
-        run: 'sed -i "s/Version: .*/Version: ${{ steps.version.outputs.version }}/g" teecontrol.php'
-
-      - name: Update package.json version
-        run: 'sed -i "s/\"version\": \".*\"/\"version\": \"${{ steps.version.outputs.version }}\"/g" package.json'
-
-      - name: Update readme.md version
-        run: 'sed -i "s/Stable tag: .*/Stable tag: ${{ steps.version.outputs.version }}/g" readme.txt'
+      - name: Update version
+        run: |
+          sed -i "s/Version: .*/Version: ${{ steps.version.outputs.version }}/g" teecontrol.php
+          sed -i "s/'TEECONTROL__VERSION', '.*'/'TEECONTROL__VERSION', '${{ steps.version.outputs.version }}'/g" teecontrol.php
+          sed -i "s/\"version\": \".*\"/\"version\": \"${{ steps.version.outputs.version }}\"/g" package.json
+          sed -i "s/Stable tag: .*/Stable tag: ${{ steps.version.outputs.version }}/g" readme.txt
 
       - name: Commit version change
         uses: stefanzweifel/git-auto-commit-action@v5
