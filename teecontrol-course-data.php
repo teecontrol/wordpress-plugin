@@ -2,10 +2,10 @@
 
 /**
  *  Teecontrol Course Data Plugin.
- * 
+ *
  * @package Teecontrol Course Data
  * @license http://www.gnu.org/licenses/gpl-3.0.html GNU General Public License, version 3 or higher
- * 
+ *
  * @wordpress-plugin
  * Plugin Name: Teecontrol Course Data
  * Plugin URI: https://github.com/teecontrol/wordpress-plugin
@@ -18,7 +18,7 @@
  * Author URI: https://teecontrol.com
  * Text Domain: teecontrol-course-data
  * Domain Path: /languages/
- * 
+ *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
