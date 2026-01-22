@@ -2,8 +2,6 @@
 
 namespace TeecontrolCourseData;
 
-use TeecontrolCourseData\Encrypter;
-
 class Teecontrol
 {
     private static $initiated = false;
