@@ -31,23 +31,6 @@ class Teecontrol
         static::register_settings();
     }
 
-    /**
-     * Load translation of the textdomain
-     *
-     * @return void
-     */
-    public static function load_textdomain()
-    {
-        $plugin_path = str_replace('\\', '/', TEECONTROL_COURSE_DATA__PLUGIN_DIR);
-        $mu_path = str_replace('\\', '/', WPMU_PLUGIN_DIR);
-
-        if (stripos($plugin_path, $mu_path) !== false) {
-            load_muplugin_textdomain('teecontrol-course-data', dirname(TEECONTROL_COURSE_DATA__BASEFILE) . '/languages');
-        } else {
-            load_plugin_textdomain('teecontrol-course-data', false, dirname(TEECONTROL_COURSE_DATA__BASEFILE) . '/languages');
-        }
-    }
-
     public static function autoload_composer()
     {
         // Autoloader has already been defined
@@ -71,8 +54,6 @@ class Teecontrol
     {
         // Make sure the minimum version matches
         if (version_compare($GLOBALS['wp_version'], TEECONTROL_COURSE_DATA__MINIMUM_WP_VERSION, '<')) {
-            static::load_textdomain();
-
             $message = '<strong>' .
                 /* translators: %1$s will be replaced by current Teecontrol Course Data version number, %2$s will be replaced by minimum required WordPress version number. */
                 sprintf(esc_html__('Teecontrol Course Data %1$s requires WordPress %2$s or higher.', 'teecontrol-course-data'), TEECONTROL_COURSE_DATA__VERSION, TEECONTROL_COURSE_DATA__MINIMUM_WP_VERSION) . '</strong> ' .

@@ -7,7 +7,7 @@
 		"build": "wp-scripts build --webpack-copy-php --blocks-manifest",
 		"start": "wp-scripts start --webpack-copy-php --blocks-manifest",
 		"plugin-zip": "wp-scripts plugin-zip",
-		"languages": "wp i18n make-mo ./languages && wp i18n make-php ./languages && wp i18n make-json ./languages"
+		"languages": "wp i18n make-pot . ./languages/teecontrol-course-data.pot --exclude=node_modules,vendor,src && wp i18n make-mo ./languages && wp i18n make-php ./languages && wp i18n make-json ./languages"
 	},
 	"files": [
 		"build",
@@ -17,7 +17,7 @@
 		"index.php",
 		"license.txt",
 		"readme.txt",
-		"teecontrol.php"
+		"teecontrol-course-data.php"
 	],
 	"devDependencies": {
 		"@wordpress/scripts": "^30.16.0"
