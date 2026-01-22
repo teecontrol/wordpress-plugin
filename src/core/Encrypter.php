@@ -1,6 +1,6 @@
 <?php
 
-namespace Teecontrol;
+namespace TeecontrolCourseData;
 
 class Encrypter
 {

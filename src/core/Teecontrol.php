@@ -1,15 +1,11 @@
 <?php
 
-namespace Teecontrol;
+namespace TeecontrolCourseData;
+
+use TeecontrolCourseData\Encrypter;
 
 class Teecontrol
 {
-    // const API_HOST = 'api.teecontrol.com';
-    // const API_PORT = 443;
-
-    public const API_HOST = 'api.teecontrol.site';
-    public const API_PORT = 80;
-
     private static $initiated = false;
 
     private static $autoloader;
@@ -44,13 +40,13 @@ class Teecontrol
      */
     public static function load_textdomain()
     {
-        $plugin_path = str_replace('\\', '/', TEECONTROL__PLUGIN_DIR);
+        $plugin_path = str_replace('\\', '/', TEECONTROL_COURSE_DATA__PLUGIN_DIR);
         $mu_path = str_replace('\\', '/', WPMU_PLUGIN_DIR);
 
         if (stripos($plugin_path, $mu_path) !== false) {
-            load_muplugin_textdomain('teecontrol', dirname(TEECONTROL__BASEFILE) . '/languages');
+            load_muplugin_textdomain('teecontrol-course-data', dirname(TEECONTROL_COURSE_DATA__BASEFILE) . '/languages');
         } else {
-            load_plugin_textdomain('teecontrol', false, dirname(TEECONTROL__BASEFILE) . '/languages');
+            load_plugin_textdomain('teecontrol-course-data', false, dirname(TEECONTROL_COURSE_DATA__BASEFILE) . '/languages');
         }
     }
 
@@ -61,7 +57,7 @@ class Teecontrol
             return;
         }
 
-        $autoloadFile = TEECONTROL__PLUGIN_DIR . 'vendor/autoload.php';
+        $autoloadFile = TEECONTROL_COURSE_DATA__PLUGIN_DIR . 'vendor/autoload.php';
 
         if (is_readable($autoloadFile)) {
             static::$autoloader = require $autoloadFile;
@@ -76,19 +72,19 @@ class Teecontrol
     public static function plugin_activation()
     {
         // Make sure the minimum version matches
-        if (version_compare($GLOBALS['wp_version'], TEECONTROL__MINIMUM_WP_VERSION, '<')) {
-            load_plugin_textdomain('teecontrol');
+        if (version_compare($GLOBALS['wp_version'], TEECONTROL_COURSE_DATA__MINIMUM_WP_VERSION, '<')) {
+            load_plugin_textdomain('teecontrol-course-data');
 
             $message = '<strong>' .
-                /* translators: %1$s will be replaced by current Teecontrol version number, %2$s will be replaced by minimum required WordPress version number. */
-                sprintf(esc_html__('Teecontrol %1$s requires WordPress %2$s or higher.', 'teecontrol'), TEECONTROL__VERSION, TEECONTROL__MINIMUM_WP_VERSION) . '</strong> ' .
+                /* translators: %1$s will be replaced by current Teecontrol Course Data version number, %2$s will be replaced by minimum required WordPress version number. */
+                sprintf(esc_html__('Teecontrol Course Data %1$s requires WordPress %2$s or higher.', 'teecontrol-course-data'), TEECONTROL_COURSE_DATA__VERSION, TEECONTROL_COURSE_DATA__MINIMUM_WP_VERSION) . '</strong> ' .
                 /* translators: %1$s will be replaced by wordPress documentation URL. */
-                sprintf(__('Please <a href="%1$s">upgrade WordPress</a> to a current version.', 'teecontrol'), 'https://codex.wordpress.org/Upgrading_WordPress');
+                sprintf(__('Please <a href="%1$s">upgrade WordPress</a> to a current version.', 'teecontrol-course-data'), 'https://codex.wordpress.org/Upgrading_WordPress');
 
             static::bail_activation($message);
         } elseif (! empty(wp_unslash($_SERVER['SCRIPT_NAME'])) && false !== strpos(wp_unslash($_SERVER['SCRIPT_NAME']), '/wp-admin/plugins.php')) {
             // Set temporary action so redirect in TeecontrolAdmin::admin_init will be triggered
-            add_option('Activated_Teecontrol', true);
+            add_option('Activated_TeecontrolCourseData', true);
 
             static::register_defaults();
             static::register_cronjobs();
@@ -101,10 +97,10 @@ class Teecontrol
 
         if ($deactivate) {
             $plugins = get_option('active_plugins');
-            $teecontrol = plugin_basename(TEECONTROL__PLUGIN_DIR . 'teecontrol.php');
+            $pluginFile = plugin_basename(TEECONTROL_COURSE_DATA__PLUGIN_DIR . 'teecontrol-course-data.php');
             $update  = false;
             foreach ($plugins as $i => $plugin) {
-                if ($plugin === $teecontrol) {
+                if ($plugin === $pluginFile) {
                     $plugins[ $i ] = false;
                     $update        = true;
                 }
@@ -124,7 +120,7 @@ class Teecontrol
      */
     public static function register_defaults()
     {
-        add_option('teecontrol_api_url', 'https://api.teecontrol.com');
+        add_option('teecontrol_course_data_api_url', 'https://api.teecontrol.com');
     }
 
     /**
@@ -135,13 +131,13 @@ class Teecontrol
     public static function plugin_deactivation()
     {
         // Delete all plugin options
-        delete_option('teecontrol_api_url');
-        delete_option('teecontrol_api_key');
-        delete_option('teecontrol_course_status');
-        delete_option('teecontrol_course_agenda');
+        delete_option('teecontrol_course_data_api_url');
+        delete_option('teecontrol_course_data_api_key');
+        delete_option('teecontrol_course_data_course_status');
+        delete_option('teecontrol_course_data_course_agenda');
 
         // Deactivate all upcoming cronjobs
-        foreach (['teecontrol_sync_course_status', 'teecontrol_sync_course_agenda'] as $hook) {
+        foreach (['teecontrol_course_data_sync_course_status', 'teecontrol_course_data_sync_course_agenda'] as $hook) {
             $timestamp = wp_next_scheduled($hook);
             if ($timestamp) {
                 wp_unschedule_event($timestamp, $hook);
@@ -152,11 +148,11 @@ class Teecontrol
     public static function add_block_categories($categories)
     {
         $categories[] = [
-            'slug'  => 'teecontrol-blocks',
+            'slug'  => 'teecontrol-course-data-blocks',
             'title' => sprintf(
                 /* translators: %1$s will be replaced by "Teecontrol". */
-                __('%1$s Data Blocks', 'teecontrol'),
-                __('Teecontrol', 'teecontrol')
+                __('%1$s Data Blocks', 'teecontrol-course-data'),
+                __('Teecontrol', 'teecontrol-course-data')
             ),
         ];
 
@@ -166,8 +162,8 @@ class Teecontrol
     public static function register_cronjobs()
     {
         $cronjobs = [
-            'teecontrol_sync_course_status',
-            'teecontrol_sync_course_agenda',
+            'teecontrol_course_data_sync_course_status',
+            'teecontrol_course_data_sync_course_agenda',
         ];
 
         foreach ($cronjobs as $hook => $settings) {
@@ -189,16 +185,16 @@ class Teecontrol
     public static function sync_course_status()
     {
         // Ignore when settings are not fulfilled
-        if (!get_option('teecontrol_api_key')) {
+        if (!get_option('teecontrol_course_data_api_key')) {
             return;
         }
 
         // Fetch the course status and store it in an option
         $response = wp_remote_get(
-            rtrim(get_option('teecontrol_api_url', 'https://api.teecontrol.com'), '/') . '/golf-course/course-status',
+            rtrim(get_option('teecontrol_course_data_api_url', 'https://api.teecontrol.com'), '/') . '/golf-course/course-status',
             [
                 'headers' => [
-                    'X-GolfCourse' => static::decrypt(get_option('teecontrol_api_key')),
+                    'X-GolfCourse' => static::decrypt(get_option('teecontrol_course_data_api_key')),
                     'Accept' => 'application/json',
                     'Accept-Language' => get_locale(),
                 ],
@@ -208,7 +204,7 @@ class Teecontrol
         // Store course status when the request was successful
         if ($response['response']['code'] >= 200 && $response['response']['code'] < 300) {
             $body = $response['body'] ?? [];
-            $option = 'teecontrol_course_status';
+            $option = 'teecontrol_course_data_course_status';
             if (!empty($body)) {
                 // Fill the option with the resulting body
                 if (get_option($option)) {
@@ -228,16 +224,16 @@ class Teecontrol
     public static function sync_course_agenda()
     {
         // Ignore when settings are not fulfilled
-        if (!get_option('teecontrol_api_key')) {
+        if (!get_option('teecontrol_course_data_api_key')) {
             return;
         }
 
         // Fetch the course status and store it in an option
         $response = wp_remote_get(
-            rtrim(get_option('teecontrol_api_url', 'https://api.teecontrol.com'), '/') . '/golf-course/agenda',
+            rtrim(get_option('teecontrol_course_data_api_url', 'https://api.teecontrol.com'), '/') . '/golf-course/agenda',
             [
                 'headers' => [
-                    'X-GolfCourse' => static::decrypt(get_option('teecontrol_api_key')),
+                    'X-GolfCourse' => static::decrypt(get_option('teecontrol_course_data_api_key')),
                     'Accept' => 'application/json',
                     'Accept-Language' => get_locale(),
                 ],
@@ -247,7 +243,7 @@ class Teecontrol
         // Store course status when the request was successful
         if ($response['response']['code'] >= 200 && $response['response']['code'] < 300) {
             $body = $response['body'] ?? [];
-            $option = 'teecontrol_course_agenda';
+            $option = 'teecontrol_course_data_course_agenda';
             if (!empty($body)) {
                 // Fill the option with the resulting body
                 if (get_option($option)) {
@@ -266,21 +262,21 @@ class Teecontrol
 
     public static function register_blocks()
     {
-        $manifestData = require TEECONTROL__SRC_DIR . '/blocks-manifest.php';
+        $manifestData = require TEECONTROL_COURSE_DATA__SRC_DIR . '/blocks-manifest.php';
         if (!empty($manifestData)) {
             add_filter('block_categories_all', function ($categories) {
 
                 // Adding a new category.
                 $categories[] = [
-                    'slug'  => 'teecontrol',
-                    'title' => __('Teecontrol', 'teecontrol')
+                    'slug'  => 'teecontrol-course-data',
+                    'title' => __('Teecontrol', 'teecontrol-course-data')
                 ];
 
                 return $categories;
             });
         }
         foreach ($manifestData as $blockType => $blockData) {
-            $pluginUrl = plugin_dir_url(TEECONTROL__SRC_DIR);
+            $pluginUrl = plugin_dir_url(TEECONTROL_COURSE_DATA__SRC_DIR);
             $blockRoot = $pluginUrl . "build/blocks/{$blockType}";
 
             $customSettings = [];
@@ -288,16 +284,16 @@ class Teecontrol
             // Register script and replace it with the alias
             if (isset($blockData['editorScript'])) {
                 wp_register_script(
-                    "teecontrol-{$blockType}",
+                    "teecontrol-course-data-{$blockType}",
                     $blockRoot . str_replace('file:.', '', $blockData['editorScript']),
                     ['wp-blocks', 'wp-i18n', 'wp-block-editor', 'wp-components', 'wp-server-side-render']
                 );
-                $customSettings['editorScript'] = "teecontrol-{$blockType}";
+                $customSettings['editorScript'] = "teecontrol-course-data-{$blockType}";
             }
 
             // Register the block
             register_block_type(
-                TEECONTROL__SRC_DIR . "blocks/{$blockType}",
+                TEECONTROL_COURSE_DATA__SRC_DIR . "blocks/{$blockType}",
                 $customSettings
             );
 
@@ -305,8 +301,8 @@ class Teecontrol
             if (isset($customSettings['editorScript'])) {
                 wp_set_script_translations(
                     $customSettings['editorScript'],
-                    'teecontrol',
-                    TEECONTROL__PLUGIN_DIR . 'languages'
+                    'teecontrol-course-data',
+                    TEECONTROL_COURSE_DATA__PLUGIN_DIR . 'languages'
                 );
             }
         }
@@ -314,21 +310,21 @@ class Teecontrol
 
     public static function register_settings()
     {
-        register_setting('teecontrol', 'teecontrol_api_key', [
+        register_setting('teecontrol-course-data', 'teecontrol_course_data_api_key', [
             'type' => 'string',
-            'label' => __('API Key', 'teecontrol'),
+            'label' => __('API Key', 'teecontrol-course-data'),
             'show_in_rest' => false,
         ]);
-        register_setting('teecontrol', 'teecontrol_api_url', [
+        register_setting('teecontrol-course-data', 'teecontrol_course_data_api_url', [
             'type' => 'string',
-            'label' => __('API URL', 'teecontrol'),
+            'label' => __('API URL', 'teecontrol-course-data'),
             'show_in_rest' => false,
         ]);
     }
 
     public static function view(string $template, array $arguments = [])
     {
-        $path = TEECONTROL__SRC_DIR . "/views/{$template}.php";
+        $path = TEECONTROL_COURSE_DATA__SRC_DIR . "views/{$template}.php";
 
         if (file_exists($path)) {
             // Create variables for all arguments so they can be used in the template.

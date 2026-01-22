@@ -8,11 +8,11 @@ Tested up to: 6.8
 Stable tag: 1.0.0
 Requires PHP: 8.3
 
-The first-party Teecontrol Wordpress plugin.
+The first-party Teecontrol Course Data Wordpress plugin.
 
 == Description ==
 
-The Teecontrol Wordpress plugin will provide blocks for your Wordpress website to view details of your golf course on your website.
+The Teecontrol Course Data Wordpress plugin will provide blocks for your Wordpress website to view details of your golf course on your website.
 
 Major feature of the plugin include:
 

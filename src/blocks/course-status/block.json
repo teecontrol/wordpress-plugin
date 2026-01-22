@@ -2,17 +2,17 @@
   "$schema": "https://schemas.wp.org/trunk/block.json",
   "apiVersion": 3,
 	"version": "0.1.0",
-  "name": "teecontrol/course-status",
+  "name": "teecontrol-course-data/course-status",
   "title": "Course Status",
   "description": "Adds a course status table in your template",
-  "category": "teecontrol",
+  "category": "teecontrol-course-data",
   "icon": "flag",
   "keywords": [
     "golf course",
     "course status",
     "tee sheet"
   ],
-  "textdomain": "teecontrol",
+  "textdomain": "teecontrol-course-data",
   "attributes": {
     "className": {
       "type": "string"

@@ -30,8 +30,8 @@ jobs:
 
       - name: Update version
         run: |
-          sed -i "s/Version: .*/Version: ${{ steps.version.outputs.version }}/g" teecontrol.php
-          sed -i "s/'TEECONTROL__VERSION', '.*'/'TEECONTROL__VERSION', '${{ steps.version.outputs.version }}'/g" teecontrol.php
+          sed -i "s/Version: .*/Version: ${{ steps.version.outputs.version }}/g" teecontrol-course-data.php
+          sed -i "s/'TEECONTROL_COURSE_DATA__VERSION', '.*'/'TEECONTROL_COURSE_DATA__VERSION', '${{ steps.version.outputs.version }}'/g" teecontrol-course-data.php
           sed -i "s/\"version\": \".*\"/\"version\": \"${{ steps.version.outputs.version }}\"/g" package.json
           sed -i "s/Stable tag: .*/Stable tag: ${{ steps.version.outputs.version }}/g" readme.txt
 
@@ -112,4 +112,4 @@ jobs:
           body: ${{ steps.cleaned-notes.outputs.notes }}
           target_commitish: ${{ github.ref_name }}
           make_latest: "${{ github.ref_name == github.event.repository.default_branch }}"
-          files: 'teecontrol.zip'
+          files: 'teecontrol-course-data.zip'

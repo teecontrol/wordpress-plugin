@@ -26,7 +26,7 @@ const { apiVersion, icon, category, name } = json;
 // Register the block
 registerBlockType(name, {
     apiVersion,
-    title: __("Course Agenda", "teecontrol"),
+    title: __("Course Agenda", "teecontrol-course-data"),
     icon,
     category,
     edit: Edit,

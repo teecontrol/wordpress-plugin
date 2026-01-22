@@ -29,7 +29,7 @@ foreach (['colorEnabled' => '--teecontrol-enabled-color', 'colorDisabled' => '--
     <?php if ($lastUpdateTime) { ?>
         <div class="teecontrol--course-status-timestamp"><?php printf(
             /* translators: %1$s will be replaced by date, %2$s will by replaced by time. */
-            esc_html(__('Last update: %1$s %2$s', 'teecontrol')),
+            esc_html(__('Last update: %1$s %2$s', 'teecontrol-course-data')),
             esc_html(wp_date(get_option('date_format'), $lastUpdateTime->getTimestamp())),
             esc_html(wp_date(get_option('time_format'), $lastUpdateTime->getTimestamp()))
         ) ?></div>

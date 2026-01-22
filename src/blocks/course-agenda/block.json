@@ -2,10 +2,10 @@
   "$schema": "https://schemas.wp.org/trunk/block.json",
   "apiVersion": 3,
 	"version": "0.1.0",
-  "name": "teecontrol/course-agenda",
+  "name": "teecontrol-course-data/course-agenda",
   "title": "Course Agenda",
   "description": "Adds a course agenda table in your template of the upcoming 30 days",
-  "category": "teecontrol",
+  "category": "teecontrol-course-data",
   "icon": "calendar-alt",
   "keywords": [
     "golf course",
@@ -13,7 +13,7 @@
     "course agenda",
     "tee sheet"
   ],
-  "textdomain": "teecontrol",
+  "textdomain": "teecontrol-course-data",
   "attributes": {
     "className": {
       "type": "string"

@@ -1,6 +1,6 @@
 <?php
 
-namespace Teecontrol\Exceptions;
+namespace TeecontrolCourseData\Exceptions;
 
 use Exception;
 

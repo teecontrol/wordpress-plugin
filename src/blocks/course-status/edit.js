@@ -28,24 +28,24 @@ const Edit = ({ attributes, setAttributes }) => {
         <>
             <InspectorControls>
                 <PanelColorSettings
-                    title={__("Color settings", "teecontrol")}
+                    title={__("Color settings", "teecontrol-course-data")}
                     colorSettings={[
                         {
                             value: colorEnabled,
                             onChange: onChangeColorEnabled,
-                            label: __("Enabled", "teecontrol"),
+                            label: __("Enabled", "teecontrol-course-data"),
                         },
                         {
                             value: colorDisabled,
                             onChange: onChangeColorDisabled,
-                            label: __("Disabled", "teecontrol"),
+                            label: __("Disabled", "teecontrol-course-data"),
                         },
                     ]}
                 />
             </InspectorControls>
             <div {...useBlockProps({ style: styles })}>
                 <ServerSideRender
-                    block="teecontrol/course-status"
+                    block="teecontrol-course-data/course-status"
                     attributes={attributes}
                 />
             </div>

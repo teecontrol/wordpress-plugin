@@ -45,42 +45,42 @@ const Edit = ({ attributes, setAttributes }) => {
         <>
             <InspectorControls>
                 <PanelColorSettings
-                    title={__("Color settings", "teecontrol")}
+                    title={__("Color settings", "teecontrol-course-data")}
                     colorSettings={[
                         {
                             value: colorAnnouncementBackground,
                             onChange: onChangeColorAnnouncementBackground,
-                            label: __("Announcement background", "teecontrol"),
+                            label: __("Announcement background", "teecontrol-course-data"),
                         },
                         {
                             value: colorAnnouncementText,
                             onChange: onChangeColorAnnouncementText,
-                            label: __("Announcement text", "teecontrol"),
+                            label: __("Announcement text", "teecontrol-course-data"),
                         },
                         {
                             value: colorOddItems,
                             onChange: onChangeColorOddItems,
                             /* translators: %1$s is an index integer. */
-                            label: __("Event color %1$s", "teecontrol").replace('%1$s', 1),
+                            label: __("Event color %1$s", "teecontrol-course-data").replace('%1$s', 1),
                         },
                         {
                             value: colorEvenItems,
                             onChange: onChangeColorEvenItems,
                             /* translators: %1$s is an index integer. */
-                            label: __("Event color %1$s", "teecontrol").replace('%1$s', 2),
+                            label: __("Event color %1$s", "teecontrol-course-data").replace('%1$s', 2),
                         },
                     ]}
                 />
-                <PanelBody title={__("Settings", "teecontrol")}>
+                <PanelBody title={__("Settings", "teecontrol-course-data")}>
                     <SelectControl
-                        label={__("Show loops or rounds", "teecontrol")}
+                        label={__("Show loops or rounds", "teecontrol-course-data")}
                         value={showLoopsOrSets}
                         options={[
                             {
                                 value: "loops",
-                                label: __("Loops", "teecontrol"),
+                                label: __("Loops", "teecontrol-course-data"),
                             },
-                            { value: "sets", label: __("Rounds", "teecontrol") },
+                            { value: "sets", label: __("Rounds", "teecontrol-course-data") },
                         ]}
                         onChange={onChangeShowLoopsOrSets}
                     />
@@ -88,7 +88,7 @@ const Edit = ({ attributes, setAttributes }) => {
             </InspectorControls>
             <div {...useBlockProps({ style: styles })}>
                 <ServerSideRender
-                    block="teecontrol/course-agenda"
+                    block="teecontrol-course-data/course-agenda"
                     attributes={attributes}
                 />
             </div>

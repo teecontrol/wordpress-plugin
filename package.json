@@ -1,12 +1,13 @@
 {
-	"name": "teecontrol",
+	"name": "teecontrol-course-data",
 	"version": "1.0.0",
 	"author": "Naboo Software B.V.",
 	"license": "GPL-3.0-or-later",
 	"scripts": {
 		"build": "wp-scripts build --webpack-copy-php --blocks-manifest",
 		"start": "wp-scripts start --webpack-copy-php --blocks-manifest",
-		"plugin-zip": "wp-scripts plugin-zip"
+		"plugin-zip": "wp-scripts plugin-zip",
+		"languages": "wp i18n make-mo ./languages && wp i18n make-php ./languages && wp i18n make-json ./languages"
 	},
 	"files": [
 		"build",
