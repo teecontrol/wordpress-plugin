@@ -71,7 +71,7 @@ class Teecontrol
     {
         // Make sure the minimum version matches
         if (version_compare($GLOBALS['wp_version'], TEECONTROL_COURSE_DATA__MINIMUM_WP_VERSION, '<')) {
-            load_plugin_textdomain('teecontrol-course-data');
+            static::load_textdomain();
 
             $message = '<strong>' .
                 /* translators: %1$s will be replaced by current Teecontrol Course Data version number, %2$s will be replaced by minimum required WordPress version number. */
@@ -80,13 +80,13 @@ class Teecontrol
                 sprintf(__('Please <a href="%1$s">upgrade WordPress</a> to a current version.', 'teecontrol-course-data'), 'https://codex.wordpress.org/Upgrading_WordPress');
 
             static::bail_activation($message);
-        } elseif (! empty(wp_unslash($_SERVER['SCRIPT_NAME'])) && false !== strpos(wp_unslash($_SERVER['SCRIPT_NAME']), '/wp-admin/plugins.php')) {
-            // Set temporary action so redirect in TeecontrolAdmin::admin_init will be triggered
-            add_option('Activated_TeecontrolCourseData', true);
-
-            static::register_defaults();
-            static::register_cronjobs();
         }
+
+        // Set temporary action so redirect in TeecontrolAdmin::admin_init will be triggered
+        add_option('Activated_TeecontrolCourseData', true);
+
+        static::register_defaults();
+        static::register_cronjobs();
     }
 
     private static function bail_activation($message, $deactivate = true)
@@ -284,7 +284,11 @@ class Teecontrol
                 wp_register_script(
                     "teecontrol-course-data-{$blockType}",
                     $blockRoot . str_replace('file:.', '', $blockData['editorScript']),
-                    ['wp-blocks', 'wp-i18n', 'wp-block-editor', 'wp-components', 'wp-server-side-render']
+                    ['wp-blocks', 'wp-i18n', 'wp-block-editor', 'wp-components', 'wp-server-side-render'],
+                    TEECONTROL_COURSE_DATA__VERSION,
+                    [
+                        'in_footer' => false
+                    ]
                 );
                 $customSettings['editorScript'] = "teecontrol-course-data-{$blockType}";
             }

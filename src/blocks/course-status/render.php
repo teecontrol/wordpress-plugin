@@ -1,6 +1,6 @@
 <?php
 // Fetch course status attributes
-$courseStatusAttributes = json_decode(get_option('teecontrol_course_status', '[]'), true);
+$courseStatusAttributes = json_decode(get_option('teecontrol_course_data_course_status', '[]'), true);
 
 // Resolve the most recent update timestamp
 $updates = [];

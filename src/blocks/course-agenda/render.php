@@ -1,6 +1,6 @@
 <?php
 // Fetch events from the agenda
-$eventsByDate = json_decode(get_option('teecontrol_course_agenda', '[]'), true);
+$eventsByDate = json_decode(get_option('teecontrol_course_data_course_agenda', '[]'), true);
 
 // Resolve value of certain attributes
 $elementAttributes = [

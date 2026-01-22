@@ -3,9 +3,9 @@ Contributors: Naboo Software B.V.
 Tags: Golf, Status
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl.html
-Requires at least: 6.8
-Tested up to: 6.8
-Stable tag: 1.0.1
+Requires at least: 6.9
+Tested up to: 6.9
+Stable tag: 1.0.0
 Requires PHP: 8.3
 
 The first-party Teecontrol Course Data Wordpress plugin.

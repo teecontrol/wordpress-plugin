@@ -35,8 +35,6 @@ class TeecontrolAdmin
             }
         }
 
-        load_plugin_textdomain('teecontrol-course-data');
-
         // Define save action
         add_action('admin_post_teecontrol_course_data_settings', [static::class, 'save_settings']);
     }
