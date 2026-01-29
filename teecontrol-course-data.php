@@ -9,7 +9,7 @@
  * @wordpress-plugin
  * Plugin Name: Teecontrol Course Data
  * Plugin URI: https://github.com/teecontrol/wordpress-plugin
- * Description: Teecontrol is the ultimate Tee sheet software for golf courses.
+ * Description: Display golf course information from your details in Teecontrol.
  * Version: 1.0.0
  * Requires at least: 6.9
  * Requires PHP: 8.3
