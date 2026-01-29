@@ -296,11 +296,13 @@ class Teecontrol
         register_setting('teecontrol-course-data', 'teecontrol_course_data_api_key', [
             'type' => 'string',
             'label' => __('API Key', 'teecontrol-course-data'),
+            'sanitize_callback' => 'sanitize_text_field',
             'show_in_rest' => false,
         ]);
         register_setting('teecontrol-course-data', 'teecontrol_course_data_api_url', [
             'type' => 'string',
             'label' => __('API URL', 'teecontrol-course-data'),
+            'sanitize_callback' => 'sanitize_text_field',
             'show_in_rest' => false,
         ]);
     }
