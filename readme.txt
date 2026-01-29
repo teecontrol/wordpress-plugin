@@ -34,6 +34,8 @@ The following data will be obtained from your Teecontrol golf course:
 - Course agenda;
 - Course status.
 
+This service is provided by Teecontrol: [general terms](https://www.teecontrol.com/NLdigital-Terms-EN.pdf), [privacy policy](https://www.teecontrol.com/teecontrol-en-privacy-policy.pdf)
+
 == Changelog ==
 
 = 1.0 =
