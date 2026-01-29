@@ -8,11 +8,11 @@ Tested up to: 6.9
 Stable tag: 1.0.0
 Requires PHP: 8.3
 
-The first-party Teecontrol Course Data Wordpress plugin.
+The first-party Teecontrol Course Data WordPress plugin.
 
 == Description ==
 
-The Teecontrol Course Data Wordpress plugin will provide blocks for your Wordpress website to view details of your golf course on your website.
+The Teecontrol Course Data WordPress plugin will provide blocks for your WordPress website to view details of your golf course on your website.
 
 Major feature of the plugin include:
 
@@ -23,7 +23,7 @@ Major feature of the plugin include:
 
 == Installation ==
 
-Upload the Teecontrol Wordpress plugin to your blog, activate it, and enter your Teecontrol credentials.
+Upload the Teecontrol WordPress plugin to your blog, activate it, and enter your Teecontrol credentials.
 The course status and course agenda events will be synced every hour.
 In the block editor you may find the course status and course agenda blocks in de "Teecontrol" category.
 
@@ -33,4 +33,4 @@ In the block editor you may find the course status and course agenda blocks in d
 
 Release date: 2025-05-28
 
-The initial release of the Teecontrol Wordpress plugin
+The initial release of the Teecontrol WordPress plugin
