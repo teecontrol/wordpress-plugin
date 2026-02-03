@@ -74,21 +74,6 @@ class Teecontrol
     {
         static::view('bail_activation', compact('message'));
 
-        if ($deactivate) {
-            $plugins = get_option('active_plugins');
-            $pluginFile = plugin_basename(TEECONTROL_COURSE_DATA__PLUGIN_DIR . 'teecontrol-course-data.php');
-            $update  = false;
-            foreach ($plugins as $i => $plugin) {
-                if ($plugin === $pluginFile) {
-                    $plugins[ $i ] = false;
-                    $update        = true;
-                }
-            }
-
-            if ($update) {
-                update_option('active_plugins', array_filter($plugins));
-            }
-        }
         exit;
     }
 
