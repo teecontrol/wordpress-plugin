@@ -14,12 +14,26 @@ The Teecontrol Course Data WordPress plugin provides template elements to show c
 
 The Teecontrol Course Data WordPress plugin will provide blocks for your WordPress website to view details of your golf course on your website.
 
+## Features
+
 Major feature of the plugin include:
 
 * Syncs course status hourly;
 * Syncs course agenda events up to 30 days hourly;
 * Block element for course status with customization;
 * Block element for course agenda with customization.
+
+---
+
+## For developers
+
+The Teecontrol Course Data plugin takes in mind that any developer should be able to contribute.
+With this in mind all source code is open source at https://github.com/teecontrol/wordpress-plugin/.
+
+### Block Editor compatibility
+Teecontrol Course Data integrates directly with the WordPress Block Editor (Gutenberg).
+All block elements are available at https://github.com/teecontrol/wordpress-plugin/tree/main/src/blocks.
+Based on this source code every developer can create their own custom blocks or contribute to the main plugin.
 
 == Installation ==
 
