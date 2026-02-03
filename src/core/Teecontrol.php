@@ -260,6 +260,16 @@ class Teecontrol
 
             $customSettings = [];
 
+            if (isset($blockData['style'])) {
+                wp_register_style(
+                    "teecontrol-course-data-{$blockType}",
+                    $blockRoot . str_replace('file:.', '', $blockData['style']),
+                    ['wp-blocks', 'wp-i18n', 'wp-block-editor', 'wp-components', 'wp-server-side-render'],
+                    TEECONTROL_COURSE_DATA__VERSION
+                );
+                $customSettings['style'] = "teecontrol-course-data-{$blockType}";
+            }
+
             // Register script and replace it with the alias
             if (isset($blockData['editorScript'])) {
                 wp_register_script(
