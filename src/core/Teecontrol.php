@@ -132,7 +132,7 @@ class Teecontrol
                 'teecontrol_course_data_sync_course_status'
             );
         }
-        
+
         if (!wp_next_scheduled('teecontrol_course_data_sync_course_agenda')) {
             wp_schedule_event(
                 $settings['at'] ?? time(),
