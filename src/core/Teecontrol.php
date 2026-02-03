@@ -64,7 +64,7 @@ class Teecontrol
         }
 
         // Set temporary action so redirect in TeecontrolAdmin::admin_init will be triggered
-        add_option('Activated_TeecontrolCourseData', true);
+        add_option('TeecontrolCourseData_Activated', true);
 
         static::register_defaults();
         static::register_cronjobs();
@@ -125,24 +125,20 @@ class Teecontrol
 
     public static function register_cronjobs()
     {
-        $cronjobs = [
-            'teecontrol_course_data_sync_course_status',
-            'teecontrol_course_data_sync_course_agenda',
-        ];
-
-        foreach ($cronjobs as $hook => $settings) {
-            if (is_string($settings)) {
-                $hook = $settings;
-                $settings = [];
-            }
-
-            if (!wp_next_scheduled($hook)) {
-                wp_schedule_event(
-                    $settings['at'] ?? time(),
-                    $settings['interval'] ?? 'hourly',
-                    $hook
-                );
-            }
+        if (!wp_next_scheduled('teecontrol_course_data_sync_course_status')) {
+            wp_schedule_event(
+                $settings['at'] ?? time(),
+                $settings['interval'] ?? 'hourly',
+                'teecontrol_course_data_sync_course_status'
+            );
+        }
+        
+        if (!wp_next_scheduled('teecontrol_course_data_sync_course_agenda')) {
+            wp_schedule_event(
+                $settings['at'] ?? time(),
+                $settings['interval'] ?? 'hourly',
+                'teecontrol_course_data_sync_course_agenda'
+            );
         }
     }
 
