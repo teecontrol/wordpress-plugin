@@ -20,6 +20,6 @@
 		"teecontrol-course-data.php"
 	],
 	"devDependencies": {
-		"@wordpress/scripts": "^30.16.0"
+		"@wordpress/scripts": "^31.4.0"
 	}
 }
