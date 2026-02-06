@@ -1,6 +1,7 @@
 {
-    "name": "u-lab/teecontrol",
+    "name": "teecontrol/wordpress-plugin",
     "type": "wordpress-plugin",
+	"homepage": "https://github.com/teecontrol/wordpress-plugin",
     "autoload": {
         "psr-4": {
             "TeecontrolCourseData\\": "build/core/"
@@ -8,8 +9,8 @@
     },
     "authors": [
         {
-            "name": "Jan-Joost Heurter",
-            "email": "janjoost.heurter@teecontrol.com"
+            "name": "Teecontrol",
+			"homepage": "https://www.teecontrol.com"
         }
     ],
     "require-dev": {
