@@ -99,13 +99,17 @@ jobs:
       - name: Compile build
         run: npm run build
 
+      - name: List files
+        run: |
+          pwd
+          ls -la
+
       - name: WordPress Plugin Deploy
         uses: 10up/action-wordpress-plugin-deploy@stable
         env:
           SVN_USERNAME: ${{ secrets.SVN_USERNAME }}
           SVN_PASSWORD: ${{ secrets.SVN_PASSWORD }}
           SLUG: teecontrol-course-data
-          BUILD_DIR: .
           VERSION: ${{ steps.version.outputs.version }}
 
       - name: Zip plugin
