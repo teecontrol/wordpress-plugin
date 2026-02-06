@@ -18,7 +18,7 @@ if (! defined('ABSPATH')) {
  * Requires at least: 6.9
  * Requires PHP: 8.3
  * License: GPL v3
- * Author: Naboo Software B.V.
+ * Author: teecontrol
  * Author URI: https://teecontrol.com
  * Text Domain: teecontrol-course-data
  * Domain Path: /languages/

@@ -1,5 +1,5 @@
 === Teecontrol Course Data ===
-Contributors: Naboo Software B.V.
+Contributors: teecontrol
 Tags: Golf, Status
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl.html
