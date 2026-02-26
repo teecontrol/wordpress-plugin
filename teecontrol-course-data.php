@@ -16,7 +16,7 @@ if (! defined('ABSPATH')) {
  * Plugin Name: Teecontrol Course Data
  * Plugin URI: https://github.com/teecontrol/wordpress-plugin
  * Description: Display golf course information from your details in Teecontrol.
- * Version: 1.0.4
+ * Version: 1.0.5
  * Requires at least: 6.9
  * Requires PHP: 8.3
  * License: GPL v3
@@ -39,7 +39,7 @@ if (! defined('ABSPATH')) {
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-define('TEECONTROL_COURSE_DATA__VERSION', '1.0.4');
+define('TEECONTROL_COURSE_DATA__VERSION', '1.0.5');
 define('TEECONTROL_COURSE_DATA__MINIMUM_WP_VERSION', '6.9');
 define('TEECONTROL_COURSE_DATA__PLUGIN_DIR', plugin_dir_path(__FILE__));
 define('TEECONTROL_COURSE_DATA__SRC_DIR', TEECONTROL_COURSE_DATA__PLUGIN_DIR . 'build/');
