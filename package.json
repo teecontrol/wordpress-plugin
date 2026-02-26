@@ -1,6 +1,6 @@
 {
 	"name": "teecontrol-course-data",
-	"version": "1.0.1",
+	"version": "1.0.4",
 	"author": "Naboo Software B.V.",
 	"license": "GPL-3.0-or-later",
 	"scripts": {
@@ -20,6 +20,6 @@
 		"teecontrol-course-data.php"
 	],
 	"devDependencies": {
-		"@wordpress/scripts": "^30.16.0"
+		"@wordpress/scripts": "^31.4.0"
 	}
 }

@@ -1,0 +1,14 @@
+/.git
+/.github
+/.wordpress-org
+/languages
+/node_modules
+/src
+
+.distignore
+.gitignore
+.node-version
+composer.lock
+package-lock.json
+package.json
+pint.json
