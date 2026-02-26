@@ -220,9 +220,14 @@ class Teecontrol
         }
     }
 
+    public static function blocks_manifest()
+    {
+        return require TEECONTROL_COURSE_DATA__SRC_DIR . '/blocks-manifest.php';
+    }
+
     public static function register_blocks()
     {
-        $manifestData = require TEECONTROL_COURSE_DATA__SRC_DIR . '/blocks-manifest.php';
+        $manifestData = self::blocks_manifest();
         if (!empty($manifestData)) {
             add_filter('block_categories_all', function ($categories) {
 
@@ -242,33 +247,37 @@ class Teecontrol
             $customSettings = [];
 
             if (isset($blockData['style'])) {
-                wp_register_style(
-                    "teecontrol-course-data-{$blockType}",
-                    $blockRoot . str_replace('file:.', '', $blockData['style']),
-                    ['wp-blocks', 'wp-i18n', 'wp-block-editor', 'wp-components', 'wp-server-side-render'],
-                    TEECONTROL_COURSE_DATA__VERSION
+                $fileName = str_replace('file:.', '', $blockData['style']);
+
+                wp_enqueue_block_style(
+                    $blockData['name'],
+                    [
+                        'src' => $blockRoot . $fileName,
+                        'path' => TEECONTROL_COURSE_DATA__SRC_DIR . "blocks/{$blockType}{$fileName}",
+                        'ver' => TEECONTROL_COURSE_DATA__VERSION,
+                        'deps' => ['wp-blocks', 'wp-i18n', 'wp-block-editor', 'wp-components', 'wp-server-side-render'],
+                    ]
                 );
-                $customSettings['style'] = "teecontrol-course-data-{$blockType}";
+                $customSettings['style'] = $blockData['name'];
             }
 
             // Register script and replace it with the alias
-            if (isset($blockData['editorScript'])) {
-                wp_register_script(
-                    "teecontrol-course-data-{$blockType}",
-                    $blockRoot . str_replace('file:.', '', $blockData['editorScript']),
-                    ['wp-blocks', 'wp-i18n', 'wp-block-editor', 'wp-components', 'wp-server-side-render'],
-                    TEECONTROL_COURSE_DATA__VERSION,
-                    [
-                        'in_footer' => false
-                    ]
-                );
-                $customSettings['editorScript'] = "teecontrol-course-data-{$blockType}";
-            }
+            // if (isset($blockData['editorScript'])) {
+            //     wp_register_script(
+            //         $blockData['name'] . '-editor-script',
+            //         $blockRoot . str_replace('file:.', '', $blockData['editorScript']),
+            //         ['wp-blocks', 'wp-i18n', 'wp-block-editor', 'wp-components', 'wp-server-side-render'],
+            //         TEECONTROL_COURSE_DATA__VERSION,
+            //         [
+            //             'in_footer' => false
+            //         ]
+            //     );
+            //     $customSettings['editorScript'] = $blockData['name'] . '-editor-script';
+            // }
 
             // Register the block
             register_block_type(
-                TEECONTROL_COURSE_DATA__SRC_DIR . "blocks/{$blockType}",
-                $customSettings
+                TEECONTROL_COURSE_DATA__SRC_DIR . "blocks/{$blockType}/block.json",
             );
 
             // Set translations on editor scripts

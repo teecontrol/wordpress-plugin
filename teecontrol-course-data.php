@@ -1,5 +1,7 @@
 <?php
 
+use TeecontrolCourseData\Teecontrol;
+
 if (! defined('ABSPATH')) {
     exit;
 } // Exit if accessed directly
