@@ -21,10 +21,16 @@ foreach (['colorEnabled' => '--teecontrol-enabled-color', 'colorDisabled' => '--
 ?>
 <div <?php echo wp_kses_data(get_block_wrapper_attributes($elementAttributes)); ?>>
     <?php foreach ($courseStatusAttributes as $attribute) { ?>
-        <div class="teecontrol--course-status-attribute <?php echo esc_attr($attribute['is_enabled'] ? 'teecontrol--course-status-enabled' : 'teecontrol--course-status-disabled') ?>">
-            <span class="teecontrol--course-status-attribute-label"><?php echo esc_html(isset($attribute['loop']) ? $attribute['loop']['name'] : $attribute['name']) ?></span>
-            <span class="teecontrol--course-status-attribute-status"><?php echo esc_html($attribute['content']) ?></span>
-        </div>
+        <?php if ($attribute['type'] === 'subheading') { ?>
+            <div class="teecontrol--course-status-attribute teecontrol--course-status-subheading">
+                <?php echo esc_html(isset($attribute['loop']) ? $attribute['loop']['name'] : $attribute['name']) ?>
+            </div>
+        <?php } else { ?>
+            <div class="teecontrol--course-status-attribute <?php echo esc_attr($attribute['is_enabled'] ? 'teecontrol--course-status-enabled' : 'teecontrol--course-status-disabled') ?>">
+                <span class="teecontrol--course-status-attribute-label"><?php echo esc_html(isset($attribute['loop']) ? $attribute['loop']['name'] : $attribute['name']) ?></span>
+                <span class="teecontrol--course-status-attribute-status"><?php echo esc_html($attribute['content']) ?></span>
+            </div>
+        <?php } ?>
     <?php } ?>
     <?php if ($lastUpdateTime) { ?>
         <div class="teecontrol--course-status-timestamp"><?php printf(
