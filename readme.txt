@@ -4,7 +4,7 @@ Tags: Golf, Status
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl.html
 Requires at least: 6.9
-Tested up to: 6.9
+Tested up to: 7.1
 Stable tag: 1.0.5
 Requires PHP: 8.3
 
