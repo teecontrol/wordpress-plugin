@@ -23,8 +23,8 @@ class Teecontrol
 
         static::$encrypter = new Encrypter();
 
-        add_action('teecontrol_sync_course_status', [static::class, 'sync_course_status']);
-        add_action('teecontrol_sync_course_agenda', [static::class, 'sync_course_agenda']);
+        add_action('teecontrol_course_data_sync_course_status', [static::class, 'sync_course_status']);
+        add_action('teecontrol_course_data_sync_course_agenda', [static::class, 'sync_course_agenda']);
 
         static::register_blocks();
 
